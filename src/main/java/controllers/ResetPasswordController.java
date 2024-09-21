@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import services.IUserService;
 import services.impl.UserServiceImpl;
 
@@ -48,6 +49,8 @@ public class ResetPasswordController extends HttpServlet {
             alertMsg = "Cập nhật mật khẩu thành công";
             req.setAttribute("alert", alertMsg);
             req.getRequestDispatcher(RESETPASSWORD).forward(req, resp);
+            HttpSession session = req.getSession();
+            session.removeAttribute("username");
             return;
         } else {
             alertMsg = "Cập nhật mật khẩu thất bại";
