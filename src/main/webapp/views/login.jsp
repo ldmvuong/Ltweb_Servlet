@@ -77,6 +77,7 @@
                 display: block;
                 float: none;
             }
+
             .cancelbtn {
                 width: 100%;
             }
@@ -95,10 +96,10 @@
 
     <div class="container">
         <label for="uname"><b>Username</b></label>
-        <input id="uname" type="text" placeholder="Enter Username" name="username" >
+        <input id="uname" type="text" placeholder="Enter Username" name="username">
 
         <label for="psw"><b>Password</b></label>
-        <input id="psw" type="password" placeholder="Enter Password" name="password" >
+        <input id="psw" type="password" placeholder="Enter Password" name="password">
 
         <button type="submit">Login</button>
         <label>
@@ -108,7 +109,8 @@
 
     <div class="container" style="background-color:#f1f1f1">
         <button type="button" class="cancelbtn">Cancel</button>
-        <span class="psw">Forgot <a href="#">password?</a> | <a href="/LtwebServlet_war_exploded/register">Sign Up</a></span>
+        <span class="psw">Forgot <a href="/LtwebServlet_war_exploded/forgot-password"">password?</a> | <a
+                href="/LtwebServlet_war_exploded/register">Sign Up</a></span>
     </div>
 
 </form>

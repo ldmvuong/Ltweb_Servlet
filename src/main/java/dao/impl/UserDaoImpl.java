@@ -143,6 +143,50 @@ public class UserDaoImpl extends DBConnectMySQL implements IUserDao {
     }
 
     @Override
+    public boolean checkUserByEmail(String username, String email) {
+        boolean exist = false;
+        String sql = "select * from user where username = ? and email = ?";
+        try{
+            conn = super.getDatabaseConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, email);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                exist = true;
+            }
+            ps.close();
+            conn.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return exist;
+    }
+
+    @Override
+    public boolean updatePassword(String username, String password) {
+        String sql = "update user set password = ? where username = ?";
+        boolean isUpdated = false;
+        try{
+            conn = super.getDatabaseConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, password);
+            ps.setString(2, username);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                isUpdated = true;
+            }
+            ps.close();
+            conn.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return isUpdated;
+    }
+
+    @Override
     public UserModel findByUsername(String username) {
         UserModel user = null;
         String sql = "SELECT * FROM user WHERE username = ?";
