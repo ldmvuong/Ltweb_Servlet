@@ -7,7 +7,7 @@ public interface IUserService {
 
     UserModel login(String username, String password);
 
-    UserModel register(UserModel user);
+    void register(UserModel user);
 
     boolean register(String email, String password, String username, String
             fullname, String phone);

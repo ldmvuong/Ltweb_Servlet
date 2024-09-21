@@ -1,5 +1,6 @@
 package controllers;
 
+import Constant.Path;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,7 +19,7 @@ import java.io.PrintWriter;
 public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/views/login.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher(Path.LOGIN);
         dispatcher.forward(req, resp);
     }
 
@@ -35,13 +36,14 @@ public class LoginController extends HttpServlet {
         if (username.isEmpty() || password.isEmpty()) {
             alertMsg = "Tài khoản hoặc mật khẩu không được rỗng";
             req.setAttribute("alert", alertMsg);
-            req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
+            req.getRequestDispatcher(Path.LOGIN).forward(req, resp);
             return;
         }
 
         IUserService service = new UserServiceImpl();
         UserModel user = service.login(username, password);
         if (user != null) {
+            System.out.println("User full name: " + user.getFullname());
             HttpSession session = req.getSession(true);
             session.setAttribute("account", user);
             resp.sendRedirect(req.getContextPath() + "/waiting");
@@ -49,7 +51,7 @@ public class LoginController extends HttpServlet {
             alertMsg =
                     "Tài khoản hoặc mật khẩu không đúng";
             req.setAttribute("alert", alertMsg);
-            req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
+            req.getRequestDispatcher(Path.LOGIN).forward(req, resp);
         }
     }
 }
