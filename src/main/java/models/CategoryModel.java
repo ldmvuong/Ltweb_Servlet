@@ -4,18 +4,17 @@ import java.io.Serializable;
 
 public class CategoryModel implements Serializable {
     private static final long serialVersionUID = 1L;
+
     private int categoryid;
     private String categoryname;
     private String images;
+    private int status;
+
+    public CategoryModel() {
+    }
 
     public int getCategoryid() {
         return categoryid;
-    }
-
-    public CategoryModel(String categoryname, String images, int status) {
-        this.categoryname = categoryname;
-        this.images = images;
-        this.status = status;
     }
 
     public void setCategoryid(int categoryid) {
@@ -34,16 +33,6 @@ public class CategoryModel implements Serializable {
         return images;
     }
 
-    @Override
-    public String toString() {
-        return "CategoryModel{" +
-                "categoryid=" + categoryid +
-                ", categoryname='" + categoryname + '\'' +
-                ", images='" + images + '\'' +
-                ", status=" + status +
-                '}';
-    }
-
     public void setImages(String images) {
         this.images = images;
     }
@@ -54,10 +43,5 @@ public class CategoryModel implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    private int status;
-    public CategoryModel() {
-
     }
 }

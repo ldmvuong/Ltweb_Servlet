@@ -6,12 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ include file="/commons/taglib.jsp" %>
 
 <a href="<c:url value='/admin/category/add'/>">Add Category</a>
 
 
-<table>
+<table border="1" width="100%">
     <tr>
         <th>STT</th>
         <th>Image</th>
@@ -22,8 +22,17 @@
     <c:forEach items="${listcate}" var="cate" varStatus="STT">
         <tr>
             <td>${STT.index+1 }</td>
-            <c:url value="${cate.images}" var="imgUrl"></c:url>
-            <td><img height="150" width="200" src="${imgUrl}"/></td>
+
+            <td>
+                <c:if test="${cate.images.substring(0,5) != 'https'}">
+                    <c:url value="/image?fname=${cate.images}" var="imgUrl"></c:url>
+                </c:if>
+                <c:if test="${cate.images.substring(0,5) == 'https'}">
+                    <c:url value="${cate.images}" var="imgUrl"></c:url>
+                </c:if>
+
+                <img height="150" width="200" src="${imgUrl}" />
+            </td>
             <td>${cate.categoryname }</td>
             <td>
                 <c:if test="${cate.status ==1}">

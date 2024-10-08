@@ -7,6 +7,7 @@ import models.CategoryModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,7 +119,7 @@ public class CategoryDaoImpl extends DBConnectMySQL implements ICategoryDao {
 
     @Override
     public void insert(CategoryModel category) {
-        String sql = "insert into category(catergoryname, images, status) values(?,?,?)";
+        String sql = "insert into category(categoryname, images, status) values(?,?,?)";
         try {
             conn = super.getDatabaseConnection();
             ps = conn.prepareStatement(sql);

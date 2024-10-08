@@ -32,9 +32,9 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public void insert(CategoryModel category) {
-        CategoryModel categoryModel = this.findById(category.getCategoryid());
-        if (categoryModel != null) {
-            categoryDao.insert(categoryModel);
+        CategoryModel categoryModel = this.findByName(category.getCategoryname());
+        if (categoryModel == null) {
+            categoryDao.insert(category);
         }
     }
 
@@ -42,7 +42,7 @@ public class CategoryServiceImpl implements ICategoryService {
     public void update(CategoryModel category) {
         CategoryModel categoryModel = this.findById(category.getCategoryid());
         if (categoryModel != null) {
-            categoryDao.update(categoryModel);
+            categoryDao.update(category);
         }
 
     }

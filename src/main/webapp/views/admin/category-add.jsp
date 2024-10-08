@@ -8,12 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core"  %>
 
-<form action="<c:url value='/admin/category/insert'/>" method="post">
+<form action="<c:url value='/admin/category/insert'/>" method="post" enctype="multipart/form-data">
     <label for="categoryname">Category name:</label><br>
     <input type="text" id="categoryname" name="categoryname"><br><br>
 
     <label for="images">Link images:</label><br>
     <input type="text" id="images" name="images"><br><br>
+    <label for="imageUpload">Upload Image:</label><br>
+    <input type="file" onchange="chooseFile(this)" id="imageUpload" name="imageUpload"><br><br>
 
     <label >Status:</label><br>
     <input type="radio" id="status_active" name="status" value="1">
